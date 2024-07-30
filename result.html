@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2248 Game - Result</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Result Page Styles */
+        .result-container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-container h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0077b6; /* Dark blue */
+        }
+
+        .result-container p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .result-container button {
+            background-color: #0077b6;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .result-container button:hover {
+            background-color: #005f8a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container result-page">
+        <div class="result-container">
+            <h1 id="result-message">Game Over</h1>
+            <p id="result-score">Score: 0</p>
+            <p id="result-highest">Highest Score: 0</p>
+            <button onclick="restartGame()">Restart Game</button>
+        </div>
+    </div>
+    <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                outcome: params.get('outcome'),
+                score: params.get('score'),
+                highestBlock: params.get('highestBlock')
+            };
+        }
+
+        function restartGame() {
+            window.location.href = 'index.html'; // Adjust this URL based on your project structure
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = getQueryParams();
+            const outcomeMessage = params.outcome === 'win' ? 'You Win!' : 'Game Over';
+            document.getElementById('result-message').textContent = outcomeMessage;
+            document.getElementById('result-score').textContent = 'Score: ' + params.score;
+            document.getElementById('result-highest').textContent = 'Highest Score: ' + params.highestBlock;
+        });
+    </script>
+</body>
+</html>
